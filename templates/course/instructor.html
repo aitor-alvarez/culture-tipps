@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load static %}
+{% block content %}
+
+<div class="container">
+<br>
+<a href="{% url 'password_change' %}">Need to change password?</a>
+<hr>
+<h1>Instructor's Dashboard</h1>
+<h3>Courses</h3>
+<br>
+<ul class="collection">
+    {% for course in courses %}
+        <li class="collection-item">
+            <h4> <a href="{% url 'home' %}/course_results/{{ course.id }}">{{ course }}</a></h4>
+        </li>
+    {%  endfor %}
+</ul>
+</div>
+{% endblock %}

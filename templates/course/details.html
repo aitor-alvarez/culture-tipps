@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+<div class="card-panel grey lighten-5 z-depth-1" id="description">
+                <h5>The following credentials are valid for 15 days:</h5>
+                <div class="row valign-wrapper">
+                    <div class="col s12">
+                        <div class="row">
+	<h4>User: {{ user }}</h4>
+    <h4>Password: {{ passw }}</h4>
+                        </div>
+                        </div>
+                    </div>
+</div>
+{% endblock %}
