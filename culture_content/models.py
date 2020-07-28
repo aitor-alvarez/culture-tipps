@@ -9,7 +9,9 @@ lang_choices = (
     ('C', 'Chinese'),
     ('R', 'Russian'),
     ('A', 'Arabic'),
-    ('L', 'All')
+    ('L', 'All'),
+    ('E', 'Russian-in-English'),
+    ('B', 'Arabic-in-Arabic')
 )
 user_choices = (
     ('I', 'Instructor'),

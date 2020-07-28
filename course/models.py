@@ -6,7 +6,10 @@ from django.contrib.auth.models import User
 lang_choices = (
     ('C', 'Chinese'),
     ('R', 'Russian'),
-    ('A', 'Arabic')
+    ('A', 'Arabic'),
+    ('L', 'All'),
+    ('E', 'Russian-in-English'),
+    ('B', 'Arabic-in-Arabic')
 )
 
 class Course(models.Model):
