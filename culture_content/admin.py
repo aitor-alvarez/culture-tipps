@@ -14,6 +14,7 @@ class TextMedia:
 class AnswerInline(admin.TabularInline):
     model = Answer
     exclude = ['feedback_initial']
+    extra=4
 
 class MCQuestionAdmin(admin.ModelAdmin):
     class Meta:
