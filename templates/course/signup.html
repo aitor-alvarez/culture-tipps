@@ -3,7 +3,8 @@
 
 {% block content %}
     {% if error %}
-
+<div class="section scrollspy">
+        <div class="container">
     <div class="card-panel grey lighten-5 z-depth-1" id="description">
                 <h5>{{ error }}</h5>
                 <div class="row valign-wrapper">
@@ -11,14 +12,14 @@
                         <div class="row">
                             {% else %}
 <div class="card-panel grey lighten-5 z-depth-1" id="description">
-                <h5>Request a test user by providing your e-mail address:</h5>
+                <h5>To signup for an account, please provide a valid e-mail address:</h5>
                 <div class="row valign-wrapper">
                     <div class="col s12">
                         <div class="row">
 		<form method="post" action=".">
 			{% csrf_token %}
 			{{ form }}
-			<p  class="text-center"><button class="btn-block" type="submit">Request test user</button></p>
+			<p  class="text-center"><button class="btn-block" type="submit">Signup</button></p>
 
 			<input type="hidden" name="next" value="{{ next }}" />
 		</form>
@@ -28,5 +29,9 @@
                         </div>
                     </div>
 </div>
+    </div>
+    </div>
+    </div>
+
 
 {% endblock %}

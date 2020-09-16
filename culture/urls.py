@@ -19,6 +19,7 @@ from django.conf.urls.static import static
 from django.conf import settings
 from culture_content.views import *
 from course.views import *
+from django.contrib.auth import views as auth_views
 from django.views.generic import TemplateView
 
 
@@ -27,7 +28,8 @@ urlpatterns = [
     path('accounts/password_change/',TemplateView.as_view(template_name="registration/password_change_form.html"), name="password_change"),
     path('password-done', TemplateView.as_view(template_name="registration/password_change_done.html"), name="password_change_done"),
     path('grappelli/', include('grappelli.urls')),
-    path('request-test-user/', request_user, name='request-user'),
+    path('password_reset/', auth_views.password_reset, name='password_reset'),
+    path('create-user/', request_user, name='request-user'),
     path('admin/', admin.site.urls),
     path('', home, name="home"),
     path('mod/<str:lang>/', get_modules, name='modules'),

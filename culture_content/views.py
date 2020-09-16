@@ -14,7 +14,9 @@ import os
 def home(request):
     img_r =[os.path.basename(r) for r in glob(r'/pythonapps/culture-app/static/assets/img/home_ru/*.jpg')]
     img_a = [os.path.basename(d) for d in glob(r'/pythonapps/culture-app/static/assets/img/home_ar_en/*.jpg')]
-    return render(request, 'culture_content/home.html', {'img_r': 'assets/img/home_ru/'+random.choice(img_r), 'img_a': 'assets/img/home_ar_en/'+random.choice(img_a)})
+    img_a_ar = [os.path.basename(d) for d in glob(r'/pythonapps/culture-app/static/assets/img/home_ar/*.jpg')]
+    return render(request, 'culture_content/home.html', {'img_r': 'assets/img/home_ru/'+random.choice(img_r), 'img_a': 'assets/img/home_ar_en/'+random.choice(img_a),
+                                                         'img_a_ar': 'assets/img/home_ar/' + random.choice(img_a_ar)})
 
 
 @login_required

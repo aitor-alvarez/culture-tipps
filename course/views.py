@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.conf import settings
 from culture_content.models import *
 from culture_content.views import get_scenario_results
 from .models import Course
@@ -9,6 +10,7 @@ import random
 import string
 from django.contrib.auth.hashers import make_password
 from django.http import HttpResponse
+from django.core.mail import send_mail
 
 
 def request_user(request):
@@ -22,6 +24,13 @@ def request_user(request):
                 data = form.save(commit=False)
                 data.username = email
                 data.password = make_password(passw)
+                send_mail(
+                    'Culture app new account',
+                    'A request has been received to create an account with your email. The password associated with your email is: '+data.password,
+                    'llcit@hawaii.edu',
+                    [email],
+	                settings.EMAIL_HOST_USER, settings.EMAIL_HOST_PASSWORD
+                )
                 data.save()
                 return render(request, 'course/details.html', {'user': email, 'passw': passw})
             except:
