@@ -29,7 +29,9 @@ urlpatterns = [
     path('password-done', TemplateView.as_view(template_name="registration/password_change_done.html"), name="password_change_done"),
     path('grappelli/', include('grappelli.urls')),
     path('password_reset/', auth_views.password_reset, name='password_reset'),
-    path('create-user/', request_user, name='request-user'),
+	  path('password_reset/done/', auth_views.password_reset_done, name='password_reset_done'),
+		path('reset/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/', auth_views.password_reset_confirm, name='password_reset_confirm'),
+    path('request-user/', request_user, name='request-user'),
     path('admin/', admin.site.urls),
     path('', home, name="home"),
     path('mod/<str:lang>/', get_modules, name='modules'),
@@ -40,6 +42,8 @@ urlpatterns = [
     path('responses/<str:lang>/', get_user_responses, name='responses'),
     path('responses/scenario/<int:scenario_id>/', get_options_results, name='responses'),
     path('course_responses/<int:course_id>/scenario/<int:scenario_id>/', get_options_results, name='course_responses'),
+		path('courses/', get_courses, name='courses'),
+	  path('enroll', enroll_course, name='enroll'),
     path('dashboard', get_profile, name='profile'),
     path('profile', get_user_data, name='user_profile')
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

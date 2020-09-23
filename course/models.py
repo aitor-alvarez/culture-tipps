@@ -19,6 +19,7 @@ class Course(models.Model):
     created = models.DateTimeField(max_length=100, default=datetime.now)
     created_by = models.CharField(max_length=50, blank=True)
     instructor = models.ManyToManyField(User, blank=True)
+    enrollment_key = models.CharField(max_length=50, blank=False)
 
     def __str__(self):
         return self.name

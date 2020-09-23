@@ -8,6 +8,7 @@ class SignUpForm(forms.ModelForm):
         super(SignUpForm, self).__init__(*args, **kwargs)
         self.fields['username'].required = False
         self.fields['password'].required = False
+        self.fields['email'].required = True
 
     class Meta:
         model = User

@@ -2,8 +2,14 @@
 {% load staticfiles %}
 
 {% block content %}
+    {% if message %}
+        <div class="card-panel grey lighten-5 z-depth-1" id="description">
+                <h5>{{ message }}</h5>
+        <button><a href="/request-user/">Return</a></button>
+</div>
+    {% else %}
 <div class="card-panel grey lighten-5 z-depth-1" id="description">
-                <h5>The following credentials are valid for 15 days:</h5>
+                <h5>These are your account credentials:</h5>
                 <div class="row valign-wrapper">
                     <div class="col s12">
                         <div class="row">
@@ -13,4 +19,5 @@
                         </div>
                     </div>
 </div>
+    {% endif %}
 {% endblock %}

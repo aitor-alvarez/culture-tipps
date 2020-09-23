@@ -6,6 +6,14 @@
 <div class="container">
 <br>
 <a href="{% url 'password_change' %}">Need to change password?</a>
+{% if courses %}
+    <h4>Your current courses</h4>
+    <ul class="collection">
+    {% for course in courses %}
+        <li>{{ course }}</li>
+    {% endfor %}
+    </ul>
+{% endif %}
 <hr>
 <h1>Track your progress</h1>
 <h3>Scenarios</h3>
