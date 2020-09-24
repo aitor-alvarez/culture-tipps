@@ -90,10 +90,18 @@ def enroll_course(request):
 
 
 @login_required
-def remove_user_from_course(request, user):
+def remove_user_from_course(request):
 	if request.POST.get('action') == 'post':
 		course = request.POST.get('course')
 		student = request.POST.get('student')
+		profile = Profile.objects.get(id=student)
+		print(profile)
+		course = Course.objects.get(id=course)
+		print(course)
+		course.participants.remove(profile)
+		return JsonResponse({'message': 'Student has been removed from the course'})
+	else:
+		return JsonResponse({'message': 'Student is not part of this course'})
 
 
 class CourseCreate(CreateView):
@@ -103,9 +111,7 @@ class CourseCreate(CreateView):
 
 		def form_valid(self, form):
 			self.object = form.save()
-			profile = Profile.objects.get(user=self.request.user)
-			self.instructor.add(profile)
-
+			self.object.instructor.add(self.request.user)
 			return HttpResponseRedirect(self.get_success_url())
 
 
