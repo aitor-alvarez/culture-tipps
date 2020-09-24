@@ -12,6 +12,7 @@ from django.contrib.auth.hashers import make_password
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.mail import send_mail
 from django.http import JsonResponse
+from django.views.generic.edit import CreateView
 
 
 
@@ -30,13 +31,13 @@ def request_user(request):
 								data.username = email
 								data.password = make_password(passw)
 								data.save()
-								send_mail(
+								'''send_mail(
 									'Culture app new account',
 									'A request has been received to create an account with your email. The password associated with your email is: ' + data.password,
 									'llcit@hawaii.edu',
 									[email],
 									settings.EMAIL_HOST_USER, settings.EMAIL_HOST_PASSWORD
-								)
+								)'''
 								return render(request, 'course/details.html', {'user': email, 'passw': passw})
 
 						except:
@@ -54,7 +55,7 @@ def get_user_data(request):
 				courses = Course.objects.filter(instructor=request.user)
 				return render(request, 'course/instructor.html', {'courses': courses, 'user_language':user_profile.language})
 		elif user_profile.type=='S':
-				courses = Course.objects.exclude(participants__in=[user_profile])
+				courses = Course.objects.filter(participants__in=[user_profile])
 				user_scenarios = Response.objects.filter(user=request.user).values('answer__task__scenario')
 				scenarios =set([scenario['answer__task__scenario'] for scenario in user_scenarios])
 				statistics=[]
@@ -87,6 +88,25 @@ def enroll_course(request):
 		else:
 			return JsonResponse({'message':'Invalid key', 'response':0})
 
+
+@login_required
+def remove_user_from_course(request, user):
+	if request.POST.get('action') == 'post':
+		course = request.POST.get('course')
+		student = request.POST.get('student')
+
+
+class CourseCreate(CreateView):
+		model = Course
+		success_url ='/profile'
+		fields = ['name', 'enrollment_key']
+
+		def form_valid(self, form):
+			self.object = form.save()
+			profile = Profile.objects.get(user=self.request.user)
+			self.instructor.add(profile)
+
+			return HttpResponseRedirect(self.get_success_url())
 
 
 

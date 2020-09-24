@@ -14,6 +14,7 @@ lang_choices = (
 
 class Course(models.Model):
     name = models.CharField(max_length=150, blank=False)
+    active = models.BooleanField()
     participants = models.ManyToManyField(Profile, blank=True)
     language = models.CharField (max_length=1, choices=lang_choices, blank=True)
     created = models.DateTimeField(max_length=100, default=datetime.now)
