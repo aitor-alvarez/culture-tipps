@@ -11,7 +11,8 @@ lang_choices = (
     ('A', 'Arabic'),
     ('L', 'All'),
     ('E', 'Russian-in-English'),
-    ('B', 'Arabic-in-Arabic')
+    ('B', 'Arabic-in-Arabic'),
+		('P', 'Portuguese-in-English')
 )
 user_choices = (
     ('I', 'Instructor'),
