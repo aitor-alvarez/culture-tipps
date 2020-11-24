@@ -37,7 +37,7 @@ user_choices = (
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    language = models.CharField (max_length=1, choices=lang_choices, blank=False)
+    language = models.CharField (max_length=1, choices=lang_profile, blank=False)
     type = models.CharField(max_length=1, choices=user_choices, blank=True, default='S')
     def __str__(self):
         return self.user.username
