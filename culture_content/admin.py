@@ -44,6 +44,10 @@ class TopicAdmin (admin.ModelAdmin):
         profile = Profile.objects.get(user = request.user)
         if profile.language == 'L':
             return Topic.objects.all()
+        elif profile.language == 'O':
+            return Topic.objects.filter(language__in=['P', 'D'])
+        elif profile.language == 'I':
+            return Topic.objects.filter(language__in=['A', 'B'])
         else:
             return Topic.objects.filter(language= profile.language)
 
@@ -57,6 +61,14 @@ class ScenarioAdmin(admin.ModelAdmin):
         profile = Profile.objects.get(user = request.user)
         if profile.language == 'L':
             return Scenario.objects.all()
+        elif profile.language == 'O':
+            scenarios_topics = Topic.objects.filter(language__in=['P', 'D'])
+            scenario_ids = [scenario.pk for topic in scenarios_topics for scenario in topic.scenarios.all()]
+            return Scenario.objects.filter(id__in=scenario_ids)
+        elif profile.language == 'I':
+            scenarios_topics = Topic.objects.filter(language__in=['A', 'B'])
+            scenario_ids = [scenario.pk for topic in scenarios_topics for scenario in topic.scenarios.all()]
+            return Scenario.objects.filter(id__in=scenario_ids)
         else:
             scenarios_topics = Topic.objects.filter(language= profile.language)
             scenario_ids = [scenario.pk  for topic in scenarios_topics for scenario in topic.scenarios.all()]

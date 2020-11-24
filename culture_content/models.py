@@ -15,6 +15,20 @@ lang_choices = (
 		('P', 'Portuguese-in-English'),
     ('D', 'Portuguese-in-Portuguese')
 )
+
+lang_profile = (
+    ('C', 'Chinese'),
+    ('R', 'Russian'),
+    ('A', 'Arabic'),
+    ('L', 'All'),
+    ('E', 'Russian-in-English'),
+    ('B', 'Arabic-in-Arabic'),
+		('P', 'Portuguese-in-English'),
+    ('D', 'Portuguese-in-Portuguese'),
+    ('I', 'All-Arabic'),
+    ('O', 'All-Portuguese')
+)
+
 user_choices = (
     ('I', 'Instructor'),
     ('S', 'Student')
