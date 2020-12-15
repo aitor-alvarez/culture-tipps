@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.dispatch import receiver
 from django.db.models.signals import post_save
 import random
+import datetime
 
 lang_choices = (
     ('C', 'Chinese'),
@@ -191,6 +192,7 @@ class Response(models.Model):
     answer = models.ForeignKey(Answer, verbose_name=("Options"), on_delete=models.CASCADE)
     response = models.DecimalField(verbose_name='Response', max_digits=3, decimal_places=1)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    responded = models.DateTimeField(max_length=100, default=datetime.now)
 
     def __str__(self):
         return 'Response to '+self.answer.task.name
