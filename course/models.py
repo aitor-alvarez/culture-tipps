@@ -9,8 +9,11 @@ lang_choices = (
     ('A', 'Arabic'),
     ('L', 'All'),
     ('E', 'Russian-in-English'),
-    ('B', 'Arabic-in-Arabic')
+    ('B', 'Arabic-in-Arabic'),
+		('P', 'Portuguese-in-English'),
+    ('D', 'Portuguese-in-Portuguese')
 )
+
 
 class Course(models.Model):
     name = models.CharField(max_length=150, blank=False)

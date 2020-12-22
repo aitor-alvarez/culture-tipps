@@ -34,7 +34,6 @@ def request_user(request):
 								'''send_mail(
 									'Culture app new account',
 									'A request has been received to create an account with your email. The password associated with your email is: ' + data.password,
-									'llcit@hawaii.edu',
 									[email],
 									settings.EMAIL_HOST_USER, settings.EMAIL_HOST_PASSWORD
 								)'''
