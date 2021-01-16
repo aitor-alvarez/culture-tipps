@@ -89,7 +89,7 @@ def get_user_responses_in_course(request, course_id):
 def get_scenarios_responses(topic_id, current_user):
     statistics = []
     scenarios = Topic.objects.filter(id=topic_id).values('scenarios')
-    scenarios = Scenario.objects.filter(id__in=scenarios)
+    scenarios = Scenario.objects.filter(id__in=scenarios).order_by('order')
     for scene in scenarios:
         options_stats, scenario_stats = get_scenario_results(scene.id, user=current_user)
         statistics.append([scene, scenario_stats])

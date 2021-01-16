@@ -6,7 +6,7 @@
     <div class="container">
      <a href="{% url 'home' %}mod/{{ module.language }}/"><img src='/static/culture/media/{{ module.image_for_topics }}' class="responsive-img"></a>
      <p>
-        <a href="{% url 'home' %}mod/{{ module.language }}/">{{ module }}</a>
+        <a href="{% url 'home' %}mod/{{ module.language }}/">{{ module.name }}</a>
     </p>
                     <h1>{{ topic }}</h1>
                     {% if topic.activation %}
