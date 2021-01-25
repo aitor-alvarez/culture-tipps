@@ -71,7 +71,7 @@ class Topic(models.Model):
     language = models.CharField (max_length=1, choices=lang_choices, blank=False)
     author = models.ForeignKey (User, on_delete=models.CASCADE)
     def __str__(self):
-        return self.name
+        return self.name+" ("+str(self.get_language_display())+")"
 
 
 @python_2_unicode_compatible
@@ -95,7 +95,7 @@ class LearningObjectives(models.Model):
     objectives = models.TextField(verbose_name="Learning Objectives", blank=False)
     language = models.CharField(max_length=1, choices=lang_choices, blank=False)
     def __str__(self):
-        return self.name
+        return self.name + " (" + str(self.get_language_display()) + ")"
 
 
 @python_2_unicode_compatible
