@@ -8,7 +8,7 @@
      <p>
         <a href="{% url 'home' %}mod/{{ module.language }}/">{{ module.name }}</a>
     </p>
-                    <h1>{{ topic }}</h1>
+                    <h1>{{ topic.name }}</h1>
                     {% if topic.activation %}
                         <p>{{ topic.activation|safe }}</p>
                     {% endif %}

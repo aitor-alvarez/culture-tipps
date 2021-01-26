@@ -44,7 +44,7 @@
 
 
                                 {% for top in obj.topics.all %}
-                                    <p><strong><a href="{% url 'home' %}top/{{ top.pk }}">{{ top }}</a></strong></p>
+                                    <p><strong><a href="{% url 'home' %}top/{{ top.pk }}">{{ top.name }}</a></strong></p>
                                 {% endfor %}
 
                         </div>
