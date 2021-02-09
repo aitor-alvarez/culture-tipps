@@ -13,11 +13,14 @@ import os
 @login_required
 def home(request):
     img_r =[os.path.basename(r) for r in glob(r'/pythonapps/culture-app/static/assets/img/home_ru/*.jpg')]
+    img_r_en = [os.path.basename(r) for r in glob(r'/pythonapps/culture-app/static/assets/img/home_ru_en/*.jpg')]
     img_a = [os.path.basename(d) for d in glob(r'/pythonapps/culture-app/static/assets/img/home_ar_en/*.jpg')]
     img_a_ar = [os.path.basename(d) for d in glob(r'/pythonapps/culture-app/static/assets/img/home_ar/*.jpg')]
     img_br_en = [os.path.basename(d) for d in glob(r'/pythonapps/culture-app/static/assets/img/home_br_en/*.jpg')]
     img_br_por = [os.path.basename(d) for d in glob(r'/pythonapps/culture-app/static/assets/img/home_br_por/*.jpg')]
-    return render(request, 'culture_content/home.html', {'img_r': 'assets/img/home_ru/'+random.choice(img_r), 'img_a': 'assets/img/home_ar_en/'+random.choice(img_a),
+    return render(request, 'culture_content/home.html', {'img_r': 'assets/img/home_ru/'+random.choice(img_r),
+                                                         'img_r_en': 'assets/img/home_ru_en/'+random.choice(img_r_en),
+                                                         'img_a': 'assets/img/home_ar_en/'+random.choice(img_a),
                                                          'img_a_ar': 'assets/img/home_ar/' + random.choice(img_a_ar),'img_br_en': 'assets/img/home_br_en/'+random.choice(img_br_en),
                                                          'img_br_por':'assets/img/home_br_por/' + random.choice(img_br_por)})
 
