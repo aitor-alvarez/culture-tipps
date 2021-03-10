@@ -152,6 +152,11 @@ def get_profile(request):
     else:
         return HttpResponseForbidden()
 
+'''
+@login_required
+def change_profile_type(request):
 
+
+'''
 
 

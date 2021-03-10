@@ -45,7 +45,7 @@
                             <h3>{{ obj.name }} Topics </h3>
 
 
-                                {% for top in obj.topics.all %}
+                                {% for top in obj.topics.all|dictsort:"order" %}
                                     <p><strong><a href="{% url 'home' %}top/{{ top.pk }}">{{ top.name }}</a></strong></p>
                                 {% endfor %}
 

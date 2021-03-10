@@ -54,6 +54,7 @@ class FeedbackLabels(models.Model):
     label_max = models.CharField(verbose_name='Label for maximum level of agreement', max_length=150, blank=False)
     label_min = models.CharField(verbose_name='Label for minimum level of agreement', max_length=150, blank=False)
     language = models.CharField(max_length=1, choices=lang_choices, blank=False)
+
     def __str__(self):
         return self.get_language_display()
 
@@ -70,6 +71,8 @@ class Topic(models.Model):
     scenarios = models.ManyToManyField('Scenario')
     language = models.CharField (max_length=1, choices=lang_choices, blank=False)
     author = models.ForeignKey (User, on_delete=models.CASCADE)
+    order = models.IntegerField(blank=True, default=1)
+
     def __str__(self):
         return self.name+" ("+str(self.get_language_display())+")"
 
