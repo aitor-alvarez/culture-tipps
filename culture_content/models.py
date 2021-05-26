@@ -13,8 +13,12 @@ lang_choices = (
     ('L', 'All'),
     ('E', 'Russian-in-English'),
     ('B', 'Arabic-in-Arabic'),
-		('P', 'Portuguese-in-English'),
-    ('D', 'Portuguese-in-Portuguese')
+    ('P', 'Portuguese-in-English'),
+    ('D', 'Portuguese-in-Portuguese'),
+    ('H', 'Hindi'),
+    ('I', 'Indonesian'),
+    ('T', 'Turkish'),
+    ('U', 'Urdu')
 )
 
 lang_profile = (
@@ -24,10 +28,11 @@ lang_profile = (
     ('L', 'All'),
     ('E', 'Russian-in-English'),
     ('B', 'Arabic-in-Arabic'),
-		('P', 'Portuguese-in-English'),
+    ('P', 'Portuguese-in-English'),
     ('D', 'Portuguese-in-Portuguese'),
     ('I', 'All-Arabic'),
-    ('O', 'All-Portuguese')
+    ('O', 'All-Portuguese'),
+    ('S', 'All-Indonesian')
 )
 
 user_choices = (

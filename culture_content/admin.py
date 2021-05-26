@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.admin.widgets import FilteredSelectMultiple
-
+from django.db.models import Q
 from django.contrib import admin
 from .models import *
 
@@ -9,7 +9,6 @@ class TextMedia:
          '/static/grappelli/tinymce/jscripts/tiny_mce/tiny_mce.js',
         '/static/grappelli/tinymce_setup/tinymce_setup.js',
         ]
-
 
 
 class AnswerInline(admin.TabularInline):
@@ -47,11 +46,13 @@ class TopicAdmin (admin.ModelAdmin):
         if profile.language == 'L':
             return Topic.objects.all()
         elif profile.language == 'O':
-            return Topic.objects.filter(language__in=['P', 'D'])
+            return Topic.objects.filter(Q(language__in=['P', 'D'])|Q(author=profile.user))
         elif profile.language == 'I':
-            return Topic.objects.filter(language__in=['A', 'B'])
+            return Topic.objects.filter(Q(language__in=['A', 'B'])|Q(author=profile.user))
+        elif profile.language == 'S':
+            return Topic.objects.filter(Q(language__in=['I'])|Q(author=profile.user))
         else:
-            return Topic.objects.filter(language= profile.language)
+            return Topic.objects.filter(Q(language= profile.language)|Q(author=profile.user))
 
 
 class ScenarioAdmin(admin.ModelAdmin):
@@ -64,15 +65,19 @@ class ScenarioAdmin(admin.ModelAdmin):
         if profile.language == 'L':
             return Scenario.objects.all()
         elif profile.language == 'O':
-            scenarios_topics = Topic.objects.filter(language__in=['P', 'D'])
+            scenarios_topics = Topic.objects.filter(Q(language__in=['P', 'D'])|Q(author=profile.user))
             scenario_ids = [scenario.pk for topic in scenarios_topics for scenario in topic.scenarios.all()]
             return Scenario.objects.filter(id__in=scenario_ids)
         elif profile.language == 'I':
-            scenarios_topics = Topic.objects.filter(language__in=['A', 'B'])
+            scenarios_topics = Topic.objects.filter(Q(language__in=['A', 'B'])|Q(author=profile.user))
+            scenario_ids = [scenario.pk for topic in scenarios_topics for scenario in topic.scenarios.all()]
+            return Scenario.objects.filter(id__in=scenario_ids)
+        elif profile.language == 'S':
+            scenarios_topics = Topic.objects.filter(Q(language__in=['I'])|Q(author=profile.user))
             scenario_ids = [scenario.pk for topic in scenarios_topics for scenario in topic.scenarios.all()]
             return Scenario.objects.filter(id__in=scenario_ids)
         else:
-            scenarios_topics = Topic.objects.filter(language= profile.language)
+            scenarios_topics = Topic.objects.filter(Q(language= profile.language)|Q(author=profile.user))
             scenario_ids = [scenario.pk  for topic in scenarios_topics for scenario in topic.scenarios.all()]
             return Scenario.objects.filter(id__in =scenario_ids)
 
